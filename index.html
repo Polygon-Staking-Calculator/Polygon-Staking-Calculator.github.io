@@ -1,493 +1,786 @@
 <!DOCTYPE html><html lang="en" data-scrapbook-source="https://polygon-bridge-chain.github.io/" data-scrapbook-create="20260109134703670" data-scrapbook-title="Sell USDT in Bali"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SEO / EEAT Meta Tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Polygon Bridge — Secure Cross-Chain Transfers on Polygon Chain</title>
-  <meta name="description" content="Polygon Bridge on Polygon Chain. Learn fees, slippage, MEV protection, exit times, and best practices. Includes Polygon Portal steps and troubleshooting.">
-  <meta name="author" content="Crypto Finance Experts">
-  <link rel="canonical" href="https://polygon-bridge-guide.example.com/">
-  <link rel="icon" type="image/png" href="polygon-logo-png_seeklogo-527156.png">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Staking Polygon Calculator — POL/MATIC Rewards Estimator, APY vs APR, Fees, Compounding & FAQ (2026)</title>
+  <meta name="description" content="Staking Polygon Calculator (2026): estimate rewards for POL/MATIC staking, APR vs APY, validator commission, compounding frequency, fee impact, break-even math, scenarios, best practices, troubleshooting, resources, and a deep FAQ." />
+  <meta name="author" content="Crypto Finance Experts" />
+  <link rel="canonical" href="https://staking-polygon-calculator.example.com/" />
+
+  <link rel="icon" type="image/png" href="polygon-logo-png_seeklogo-527156.png" />
 
   <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://polygon-bridge-guide.example.com/">
-  <meta property="og:title" content="Polygon Bridge — Secure Cross-Chain Transfers on Polygon Chain">
-  <meta property="og:description" content="How to bridge safely on Polygon Chain: fees, slippage, MEV, exit times, and Polygon Portal steps.">
-  <meta property="og:image" content="cover.png">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://staking-polygon-calculator.example.com/" />
+  <meta property="og:title" content="Staking Polygon Calculator — Rewards Estimator, Fees, Compounding & FAQ (2026)" />
+  <meta property="og:description" content="Practical Polygon staking calculator page: APR vs APY, validator commission, fee impact, compounding, scenarios, and FAQ." />
+  <meta property="og:image" content="poly2.png" />
 
-  <!-- Twitter Card -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://polygon-bridge-guide.example.com/">
-  <meta property="twitter:title" content="Polygon Bridge — Secure Cross-Chain Transfers on Polygon Chain">
-  <meta property="twitter:description" content="Practical guide for Polygon Bridge and Polygon Portal with security notes and KPIs.">
-  <meta property="twitter:image" content="cover.png">
-
-  <!-- Optional schema.org (can be extended as needed) -->
-  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Staking Polygon Calculator — Rewards Estimator, Fees, Compounding & FAQ (2026)" />
+  <meta property="twitter:description" content="Estimate POL/MATIC staking rewards with fee-aware math and realistic scenarios." />
+  <meta property="twitter:image" content="poly2.png" />
 
   <style>
-    /* =========================
-       THEME (Polygon style)
-       ========================= */
     :root{
-      --primary:#8247E5;            /* Polygon purple */
-      --primary-600:#6f39d8;
-      --primary-700:#5e2fc1;
-      --ink:#1a202c;
-      --muted:#4a5568;
-      --bg:#0b0b13;                 /* dark canvas */
-      --panel:#12121c;              /* cards */
-      --panel-2:#171727;
-      --line:#2a2a3c;
-      --ok:#16a34a;
-      --warn:#f59e0b;
-      --error:#ef4444;
-      --white:#ffffff;
-      --shadow: 0 10px 25px rgba(0,0,0,.25);
-      --radius:14px;
-      --radius-sm:10px;
-      --radius-lg:22px;
-      --gap:1.25rem;
-      --gap-lg:2rem;
+      --bg:#ffffff;
+      --ink:#0d0d14;
+      --muted:#5c5f73;
+      --line: rgba(13,13,20,.10);
+
+      /* light purple theme */
+      --p1:#a78bfa;
+      --p2:#c4b5fd;
+      --p3:#7c3aed;
+      --pGlow: rgba(167,139,250,.22);
+
+      --shadow: 0 18px 50px rgba(0,0,0,.08);
+      --shadow2: 0 10px 26px rgba(0,0,0,.08);
+
+      --r:18px;
+      --r2:26px;
+      --max: 1180px;
     }
 
-    /* Base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      color:var(--muted);
-      background: radial-gradient(1200px 800px at 10% 0%, rgba(130,71,229,.25), transparent 60%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(130,71,229,.18), transparent 60%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 700px at 6% 14%, var(--pGlow), transparent 62%),
+        radial-gradient(900px 700px at 95% 26%, rgba(196,181,253,.18), transparent 62%),
+        #fff;
       line-height:1.65;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
-    a{color:var(--primary); text-decoration:none}
+
+    a{color: var(--p3); text-decoration:none}
     a:hover{text-decoration:underline}
-    img{max-width:100%; height:auto; border-radius:var(--radius-sm)}
-    .container{max-width:1100px; margin:0 auto; padding:0 1.25rem}
+    img{max-width:100%; height:auto; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
 
-    h1,h2,h3,h4{color:var(--white); line-height:1.25; margin:0 0 .6rem}
-    h1{font-size:clamp(2rem,4.5vw,3.2rem); font-weight:900; letter-spacing:.2px}
-    h2{font-size:clamp(1.4rem,2.8vw,2rem); margin-top:2.2rem; padding-top:.6rem; border-top:1px solid var(--line)}
-    h3{font-size:clamp(1.05rem,2.2vw,1.3rem); color:#e7e7f5}
+    /* Top nav */
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .brand .logo{
+      width:34px; height:34px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      padding:6px;
+      background:#fff;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      object-fit:contain;
+    }
+    .nav{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav a{
+      font-weight:850;
+      color: rgba(13,13,20,.82);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.06); text-decoration:none}
 
-    p,li,td,th{font-size:1rem}
-    .lead{font-size:1.125rem; color:#d7d7ea}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:900;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      color: rgba(13,13,20,.92);
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background: linear-gradient(180deg, var(--p2), var(--p1));
+      border-color: rgba(13,13,20,.08);
+      box-shadow: 0 16px 34px rgba(167,139,250,.28);
+    }
+    .btn:hover{text-decoration:none; filter: brightness(1.01)}
 
     /* Hero */
-    header.hero{
-      padding: clamp(2rem,6vw,4rem) 0;
-      background:
-        radial-gradient(600px 400px at 20% 20%, rgba(130,71,229,.35), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 35%);
-      border-bottom:1px solid var(--line);
+    header.hero{padding: 54px 0 12px;}
+    .hero-center{
+      text-align:center;
+      max-width: 980px;
+      margin: 0 auto;
     }
-    .hero-grid{
-      display:grid; gap:var(--gap-lg);
-      grid-template-columns:1fr;
-      align-items:center;
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height:1.05;
+      letter-spacing:-.02em;
+      font-weight: 980;
     }
-    .hero-card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid var(--line);
-      border-radius:var(--radius-lg);
-      padding:clamp(1rem,3vw,1.75rem);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(6px);
+    .lead{
+      margin:0 auto 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 92ch;
     }
+
+    .hero-media{
+      max-width: 980px;
+      margin: 18px auto 0;
+      border-radius: var(--r2);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      background:#fff;
+    }
+    .hero-media img{width:100%;}
+
+    /* Calculator */
+    .calc-wrap{margin: 0 auto; max-width: 980px;}
+    .calc{
+      border: 1px solid var(--line);
+      border-radius: var(--r2);
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .calc-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      padding: 8px 6px 14px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .calc-head strong{font-weight:980;}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(0,0,0,.08);
+      background: rgba(196,181,253,.20);
+      color: rgba(13,13,20,.78);
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .calc-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding-top: 14px;
+    }
+    .field{
+      border:1px solid rgba(0,0,0,.10);
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: rgba(0,0,0,.01);
+    }
+    .field label{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      font-weight:950;
+      color: rgba(13,13,20,.82);
+      margin-bottom: 8px;
+    }
+    .field small{color: rgba(13,13,20,.55); font-weight:850;}
+    .field input, .field select{
+      width:100%;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font: inherit;
+      outline:none;
+      background:#fff;
+    }
+    .field input:focus, .field select:focus{
+      border-color: rgba(124,58,237,.55);
+      box-shadow: 0 0 0 4px rgba(167,139,250,.20);
+    }
+    .span2{grid-column: 1 / span 2;}
+
+    .result{
+      border:1px solid rgba(0,0,0,.10);
+      border-radius: var(--r2);
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(196,181,253,.22), rgba(167,139,250,.10));
+    }
+    .res-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .kpi{
+      border:1px solid rgba(0,0,0,.10);
+      border-radius: 18px;
+      padding: 12px;
+      background:#fff;
+    }
+    .kpi .t{color: rgba(13,13,20,.58); font-weight:900; font-size:.95rem;}
+    .kpi .v{font-weight:980; font-size: 1.25rem; margin-top:6px;}
+    .hint{
+      margin-top: 12px;
+      border:1px solid rgba(13,13,20,.08);
+      background: rgba(167,139,250,.10);
+      border-radius: 18px;
+      padding: 14px 14px;
+      color: rgba(13,13,20,.82);
+    }
+    .hint b{color:#0d0d14}
+
+    .cta-row{display:flex; justify-content:center; margin-top: 14px;}
     .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 980;
+      border: 1px solid rgba(13,13,20,.08);
+      background: linear-gradient(180deg, var(--p2), var(--p1));
+      box-shadow: 0 16px 34px rgba(167,139,250,.28);
+      color:#0d0d14;
+      min-width: 300px;
+    }
+    .cta:hover{text-decoration:none; filter: brightness(1.02)}
+
+    /* Sections */
+    main{padding: 34px 0 64px;}
+    .section{
+      border-top:1px solid rgba(0,0,0,.06);
+      padding: 44px 0;
+    }
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items:start;
+    }
+    .kicker{
       display:inline-block;
-      margin-top:1rem;
-      background:linear-gradient(180deg, var(--primary), var(--primary-700));
-      color:white; padding:.9rem 1.4rem; border-radius:12px;
-      font-weight:700; letter-spacing:.2px;
-      box-shadow:0 6px 16px rgba(130,71,229,.35);
+      font-weight: 950;
+      color: rgba(13,13,20,.48);
+      letter-spacing:.10em;
+      text-transform: lowercase;
+      margin-bottom: 10px;
     }
-    .cta:hover{filter:brightness(1.05); text-decoration:none}
-    .cta.secondary{
-      background:transparent; border:1px solid var(--line); color:#eaeafa; margin-left:.75rem;
+    h2{
+      margin:0 0 12px;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      line-height:1.12;
+      letter-spacing:-.02em;
+      font-weight: 980;
     }
-    .hero-visual{
-      display:none;
-    }
-
-    /* Steps */
-    section.step-guide{padding: clamp(2rem,6vw,3.5rem) 0}
-    .steps{
-      display:grid; gap:var(--gap);
-      grid-template-columns:1fr;
-    }
-    .step{
-      background:var(--panel);
+    p{margin:0 0 12px;}
+    .card{
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:1.2rem;
-      transition:transform .2s ease, box-shadow .2s ease;
+      border-radius: var(--r2);
+      background:#fff;
+      box-shadow: var(--shadow2);
+      padding: 18px;
     }
-    .step:hover{transform:translateY(-4px); box-shadow:0 10px 20px rgba(0,0,0,.18)}
-    .step .icon{
-      width:54px;height:54px;border-radius:50%;
-      display:inline-grid; place-items:center;
-      background:rgba(130,71,229,.18); margin-bottom:.6rem; color:#c9b6ff
+    .list{margin:12px 0 0; padding-left:18px; color: rgba(13,13,20,.86);}
+    .list li{margin:8px 0}
+
+    /* Table */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:#fff;
+      box-shadow: var(--shadow2);
+    }
+    th,td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      vertical-align:top;
+      font-size: 0.98rem;
+    }
+    th{
+      text-align:left;
+      font-weight: 980;
+      color: rgba(13,13,20,.88);
+      background: rgba(196,181,253,.22);
     }
 
-    /* Main content cards & tables */
-    main .card{
-      background:var(--panel);
+    /* FAQ */
+    .faq{
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:1.25rem;
-      margin:1.25rem 0;
+      border-radius: var(--r2);
+      background:#fff;
+      box-shadow: var(--shadow2);
+      overflow:hidden;
     }
-    table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px}
-    th,td{padding:.9rem; border-bottom:1px solid var(--line)}
-    th{background:var(--panel-2); color:#f0f0ff; text-align:left}
-    tr.highlight{background:rgba(130,71,229,.08)}
-    tr:hover{background:rgba(255,255,255,.03)}
-
-    /* EEAT / Author */
-    .eeat{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); border:1px solid var(--line); border-radius:var(--radius); padding:1.25rem}
-
-    /* FAQ (Accordion) */
-    .faq-item{border-bottom:1px solid var(--line); padding: .9rem 0}
-    .faq-button{
-      all:unset; display:flex; justify-content:space-between; align-items:center;
-      width:100%; cursor:pointer; padding:.3rem 0;
+    .faq-head{padding: 18px; border-bottom:1px solid rgba(0,0,0,.06);}
+    .faq-item{border-top:1px solid rgba(0,0,0,.06);}
+    .faq-btn{
+      all:unset;
+      cursor:pointer;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 16px 18px;
     }
-    .faq-button:focus-visible{outline:2px solid var(--primary)}
-    .faq-button h3{margin:0; font-weight:800}
-    .faq-content{max-height:0; overflow:hidden; transition:max-height .25s ease}
-    .faq-content.open{padding-top:.6rem}
+    .faq-q{margin:0; font-weight:950; font-size:1.02rem;}
+    .faq-plus{font-weight:950; color: rgba(13,13,20,.55);}
+    .faq-panel{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .26s ease;
+      padding: 0 18px;
+      color: rgba(13,13,20,.76);
+    }
+    .faq-panel.open{padding-bottom:14px;}
 
-    /* Utility */
-    .note{border-left:3px solid var(--primary); padding:.75rem 1rem; background:rgba(130,71,229,.08); border-radius:10px}
-    .ok{color:var(--ok)} .warn{color:var(--warn)} .err{color:var(--error)}
-    .center{text-align:center}
-    .muted{color:#c7c7da}
+    footer{
+      border-top:1px solid rgba(0,0,0,.08);
+      padding: 26px 0 34px;
+      color: rgba(13,13,20,.55);
+    }
 
-    /* Responsive */
-    @media (min-width: 860px){
-      .hero-grid{grid-template-columns: 1.1fr .9fr}
-      .hero-visual{display:block}
-      .steps{grid-template-columns: repeat(4, 1fr)}
+    @media (max-width: 980px){
+      .nav{display:none}
+      .two{grid-template-columns: 1fr;}
+      .calc-grid{grid-template-columns: 1fr;}
+      .span2{grid-column:auto;}
+      .res-grid{grid-template-columns: 1fr;}
     }
   </style>
 </head>
+
 <body>
 
-  <!-- =======================
-       Hero
-       ======================= -->
-  <header class="hero" role="banner">
-    <div class="container hero-grid">
-      <div class="hero-card" aria-label="Intro">
-        <h1>Polygon Bridge on Polygon Chain</h1>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img class="logo" src="polygon-logo-png_seeklogo-527156.png" alt="Logo">
+        <span>Staking Polygon Calculator</span>
+      </div>
+
+      <nav class="nav" aria-label="Quick nav">
+        <a href="#calculator">Calculator</a>
+        <a href="#math">Math</a>
+        <a href="#examples">Examples</a>
+        <a href="#fees">Fees</a>
+        <a href="#resources">Resources</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn" href="#resources">Resources</a>
+        <a class="btn btn-primary" href="https://staking.polygon.technology/" target="_blank" rel="noopener">
+          Open Staking
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-center">
+        <h1>Staking Polygon Calculator</h1>
         <p class="lead">
-          Move assets securely between networks using <strong>Polygon Bridge</strong>.
-          This guide covers routing, fees &amp; slippage, MEV protection, exit times, and a safe workflow in <strong>Polygon Portal</strong>.
+          A fee-aware rewards estimator for <b>Polygon staking</b>. The goal is realistic numbers:
+          <b>APR vs APY</b>, <b>validator commission</b>, <b>compounding frequency</b>, and the hidden killer for small stakes:
+          <b>transaction costs</b>.
         </p>
-        <div>
-          <a href="#" class="cta" aria-label="Open Polygon Portal (placeholder)">Open Polygon Portal</a>
-          <a href="#" class="cta secondary" aria-label="Documentation (placeholder)">Docs</a>
+      </div>
+
+      <div class="calc-wrap" id="calculator" aria-label="Staking calculator">
+        <div class="calc">
+          <div class="calc-head">
+            <div>
+              <strong>Rewards estimator</strong>
+              <div style="color: rgba(13,13,20,.55); font-weight:850; margin-top:4px;">
+                Works as a sanity-check model (not a promise).
+              </div>
+            </div>
+            <div class="pill">APR → net rewards → APY (if compounding)</div>
+          </div>
+
+          <div class="calc-grid">
+            <div class="field">
+              <label>
+                Stake amount
+                <small>POL/MATIC</small>
+              </label>
+              <input id="stake" type="number" inputmode="decimal" min="0" step="0.0001" value="10000" />
+            </div>
+
+            <div class="field">
+              <label>
+                Base APR
+                <small>% per year</small>
+              </label>
+              <input id="apr" type="number" inputmode="decimal" min="0" step="0.01" value="6.00" />
+            </div>
+
+            <div class="field">
+              <label>
+                Validator commission
+                <small>% of rewards</small>
+              </label>
+              <input id="commission" type="number" inputmode="decimal" min="0" step="0.01" value="5.00" />
+            </div>
+
+            <div class="field">
+              <label>
+                Compounds per year
+                <small>0 = no compounding</small>
+              </label>
+              <select id="compounds">
+                <option value="0">0 (no compounding)</option>
+                <option value="12" selected>12 (monthly)</option>
+                <option value="26">26 (biweekly)</option>
+                <option value="52">52 (weekly)</option>
+                <option value="365">365 (daily)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>
+                Total yearly transaction fees
+                <small>in POL/MATIC</small>
+              </label>
+              <input id="feesYear" type="number" inputmode="decimal" min="0" step="0.0001" value="10" />
+            </div>
+
+            <div class="field">
+              <label>
+                Time horizon
+                <small>months</small>
+              </label>
+              <input id="months" type="number" inputmode="numeric" min="1" step="1" value="12" />
+            </div>
+
+            <div class="span2 result" aria-label="Results">
+              <div class="res-grid">
+                <div class="kpi">
+                  <div class="t">Net APR (after commission)</div>
+                  <div class="v" id="netApr">—</div>
+                </div>
+                <div class="kpi">
+                  <div class="t">Effective APY (with compounding)</div>
+                  <div class="v" id="apy">—</div>
+                </div>
+                <div class="kpi">
+                  <div class="t">Estimated rewards (period)</div>
+                  <div class="v" id="rewards">—</div>
+                </div>
+                <div class="kpi">
+                  <div class="t">Net profit after fees (period)</div>
+                  <div class="v" id="profit">—</div>
+                </div>
+              </div>
+
+              <div class="hint" id="hint">
+                <b>Tip:</b> if fees are a big % of rewards, reduce compounding frequency or increase stake size.
+              </div>
+
+              <div class="cta-row">
+                <a class="cta" href="https://staking.polygon.technology/" target="_blank" rel="noopener">
+                  Start staking <span style="font-weight:980;">›</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <img src="snimok-ekrana-2022-01-25-v-16.10.24.png" alt="Polygon Bridge interface preview">
+
+      <div class="hero-media" aria-label="Hero visual">
+        <img src="poly2.png" alt="Polygon staking visual">
       </div>
     </div>
   </header>
 
-  <!-- =======================
-       Step-by-Step Guide
-       ======================= -->
-  <section class="step-guide" aria-labelledby="how-works">
-    <div class="container">
-      <h2 id="how-works">How <span class="muted">Polygon Bridge</span> Works in Polygon Portal</h2>
-      <div class="steps" role="list">
-        <article class="step" role="listitem">
-          <div class="icon">①</div>
-          <h3>1) Connect &amp; Specify Route (Polygon Bridge)</h3>
-          <p>Connect wallet, pick origin/destination networks on <strong>Polygon Chain</strong>, choose token and amount. The router estimates gas, fees, and <em>min received</em>.</p>
-        </article>
-        <article class="step" role="listitem">
-          <div class="icon">②</div>
-          <h3>2) Approve &amp; Initiate via Polygon Portal</h3>
-          <p>Approve token once (per chain), then submit the bridge transaction. Use a sane gas strategy to avoid reorgs/MEV.</p>
-        </article>
-        <article class="step" role="listitem">
-          <div class="icon">③</div>
-          <h3>3) Finalize on Destination (Polygon Chain)</h3>
-          <p>Depending on the route (PoS vs zk), finalize after checkpoint/proof. Funds materialize on the destination network.</p>
-        </article>
-        <article class="step" role="listitem">
-          <div class="icon">④</div>
-          <h3>4) Verify, Unwrap, or Swap</h3>
-          <p>Verify receipt, optionally unwrap canonical assets or swap for target tokens with price-impact safeguards.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <main class="container">
 
-  <!-- =======================
-       Main Content
-       ======================= -->
-  <main class="container" role="main">
-
-    <section class="card">
-      <p>
-        <strong>Polygon Bridge</strong> provides canonical and fast-bridge routes across the <strong>Polygon Chain</strong> ecosystem.
-        For most users, <strong>Polygon Portal</strong> offers the cleanest UX with guardrails: quoted vs realized price, slippage bounds, and failure-recovery hints.
-      </p>
-      <img src="poly2.png" alt="Polygon Bridge flow on Polygon Chain">
-    </section>
-
-    <!-- Overview & Models -->
-    <section class="card" aria-labelledby="models">
-      <h2 id="models">Security Model &amp; Finality on Polygon Bridge</h2>
-      <p>
-        Two dominant flows exist: <em>PoS bridge</em> (checkpoint-based finality; typical exit windows) and <em>zk-secured</em> routes (validity proofs; faster finality).
-        Your choice impacts withdrawal time, fees, and risk. When in doubt, prefer canonical <strong>Polygon Bridge</strong> paths from <strong>Polygon Portal</strong>.
-      </p>
-      <div class="note">
-        <strong>Best practice:</strong> For large transfers, split into tranches, enforce <code>minReceived</code>, and monitor confirmations before subsequent tranches.
+    <!-- MATH -->
+    <section class="section" id="math">
+      <div class="two">
+        <div>
+          <span class="kicker">math</span>
+          <h2>APR vs APY (and the exact calculator logic)</h2>
+        </div>
+        <div class="card">
+          <p style="color: var(--muted);">
+            Most “staking calculator” pages fail because they ignore fees and commissions. This one models it in a simple, transparent way:
+          </p>
+          <ul class="list">
+            <li><b>Net APR</b> = APR × (1 − commission).</li>
+            <li><b>Gross rewards (year)</b> = stake × netAPR.</li>
+            <li><b>APY (if compounding)</b> ≈ (1 + netAPR / n)<sup>n</sup> − 1, where <b>n</b> is compounds per year.</li>
+            <li><b>Net profit</b> = rewards − transaction fees (for the same time window).</li>
+          </ul>
+          <div class="hint">
+            <b>Break-even:</b> Compounding is only worth it if the extra rewards from compounding exceed the extra fees you pay to claim/restake.
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Routing & Fees -->
-    <section class="card" aria-labelledby="fees">
-      <h2 id="fees">Fees &amp; Slippage on Polygon Bridge (Polygon Chain)</h2>
-      <p>
-        Total cost = L1 gas + L2 gas + bridge relaying + optional swap fees. Slippage is only relevant when swapping before/after bridging.
-        Use tight but realistic slippage (e.g., 0.3–0.8%) and prefer deep liquidity venues.
-      </p>
-
-      <h3>Key Cost Components in Polygon Portal</h3>
-      <ul>
-        <li><strong>Execution Gas:</strong> Origin + destination gas; spikes during congestion.</li>
-        <li><strong>Relayer/Proof Cost:</strong> Proof generation or service fee on zk/PoS paths.</li>
-        <li><strong>DEX Slippage:</strong> If swapping, track <em>price impact</em> and <em>MEV</em> exposure.</li>
-      </ul>
-
-      <h3>Typical Fee Structure — Polygon Bridge</h3>
-      <table aria-label="Fee comparison table">
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>Usually</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="highlight">
-            <td>zk Proof/Relayer</td>
-            <td>Low–Moderate</td>
-            <td>Faster finality; cost bundled or shown explicitly in <strong>Polygon Portal</strong>.</td>
-          </tr>
-          <tr>
-            <td>PoS Checkpoint</td>
-            <td>Low</td>
-            <td>Longer exits on withdrawals; cheaper gas overall.</td>
-          </tr>
-          <tr>
-            <td>Swap Fee/Slippage</td>
-            <td>0.05–0.5%+</td>
-            <td>Depends on venue depth and route; protect with min-received.</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- EXAMPLES -->
+    <section class="section" id="examples">
+      <div class="two">
+        <div>
+          <span class="kicker">scenarios</span>
+          <h2>Realistic scenarios (what changes the result most)</h2>
+        </div>
+        <div>
+          <table aria-label="Scenarios table">
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Best move</th>
+                <th>Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Small stake</b> + high fees</td>
+                <td>Compound rarely (or never)</td>
+                <td>Fees can eat the entire yield if you “micro-claim”</td>
+              </tr>
+              <tr>
+                <td><b>Large stake</b> + stable validator</td>
+                <td>Monthly/biweekly compounding</td>
+                <td>Compounding becomes meaningful when fee % is low</td>
+              </tr>
+              <tr>
+                <td><b>High commission validator</b></td>
+                <td>Switch to transparent, competitive fees</td>
+                <td>Commission directly reduces net APR/compounding benefit</td>
+              </tr>
+              <tr>
+                <td><b>Unstable validator</b></td>
+                <td>Prioritize uptime over tiny APR differences</td>
+                <td>Downtime risk beats small headline yield changes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <!-- MEV & Safety -->
-    <section class="card" aria-labelledby="mev">
-      <h2 id="mev">MEV Protection &amp; Operational Safety on Polygon Bridge</h2>
-      <p>
-        To reduce MEV and sandwich risk around pre/post swaps, avoid broadcasting during extreme volatility, use private or protected tx routes when available,
-        and set slippage caps. Verify destination chain liquidity before committing large size.
-      </p>
-
-      <h3>Operational Checklist — Polygon Chain</h3>
-      <ul>
-        <li>Hardware wallet for approvals &amp; initiations.</li>
-        <li>Limit approvals (exact spend) and periodically revoke stale allowances.</li>
-        <li>Stage large transfers; verify receipt between stages.</li>
-        <li>Prefer canonical <strong>Polygon Bridge</strong> routes unless speed is critical.</li>
-      </ul>
+    <!-- FEES -->
+    <section class="section" id="fees">
+      <div class="two">
+        <div>
+          <span class="kicker">fees</span>
+          <h2>Fee impact (the #1 mistake in staking math)</h2>
+        </div>
+        <div class="card">
+          <ul class="list">
+            <li><b>Approval + delegate cost:</b> one-time setup costs (mostly relevant at start).</li>
+            <li><b>Claim/restake costs:</b> these repeat — this is why compounding can be harmful for small stakes.</li>
+            <li><b>Withdraw/unbond costs:</b> plan exit so you don’t get stuck without gas.</li>
+          </ul>
+          <div class="hint">
+            <b>Practical rule:</b> If your annual fees are more than ~10–20% of your expected annual rewards, compounding too often is usually a net negative.
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- KPIs -->
-    <section class="card" aria-labelledby="kpi">
-      <h2 id="kpi">KPI Metrics for Polygon Bridge (Quoted vs Realized)</h2>
-      <p class="muted">Track these after each session to validate routing quality on <strong>Polygon Portal</strong>.</p>
-      <table aria-label="KPI metrics table">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>Target</th>
-            <th>Interpretation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="highlight">
-            <td>Effective Price</td>
-            <td>&lt;= Quote × (1 + 0.30%)</td>
-            <td>Accounts for all fees/slippage; lower is better.</td>
-          </tr>
-          <tr>
-            <td>Realized vs Quoted</td>
-            <td>∆ &lt;= 0.30–0.80%</td>
-            <td>Deviation beyond band suggests congestion or shallow liquidity.</td>
-          </tr>
-          <tr>
-            <td>Fail/Revert Rate</td>
-            <td>&lt; 1%</td>
-            <td>Retry with adjusted gas or alternate route if exceeded.</td>
-          </tr>
-          <tr>
-            <td>Time-to-Finality</td>
-            <td>Route-dependent</td>
-            <td>zk routes faster; PoS withdrawals longer. Plan around this.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Runbook -->
-    <section class="card" aria-labelledby="runbook">
-      <h2 id="runbook">Runbook: Using Polygon Portal with Polygon Bridge</h2>
-
-      <h3>Bridge Flow (Canonical) — Polygon Chain</h3>
-      <ol>
-        <li>Connect wallet; pick origin/destination; select token and amount.</li>
-        <li>Review quote: gas, relayer/proof, min received.</li>
-        <li>Approve (first time) then <em>Bridge</em>; wait for confirmations.</li>
-        <li>On destination, finalize/prove if needed; verify balance.</li>
-      </ol>
-
-      <h3>Limit Orders / DCA Around Bridging</h3>
-      <ul>
-        <li>Place limit orders only after funds finalize on destination chain.</li>
-        <li>For DCA, schedule small periodic swaps; cap slippage.</li>
-      </ul>
-
-      <h3>Troubleshooting — Polygon Bridge</h3>
-      <ul>
-        <li class="warn">Stuck approval/tx: speed up or cancel if still pending; try higher priority fee.</li>
-        <li class="err">Reverted swap: reduce size, widen slippage slightly, or split into tranches.</li>
-        <li>Withdrawal delay (PoS): confirm checkpoint progress; avoid re-submitting duplicates.</li>
-      </ul>
-    </section>
-
-    <!-- EEAT -->
-    <section class="eeat" aria-labelledby="eeat">
-      <h2 id="eeat">Authoritative Notes &amp; Sources</h2>
-      <p>Prefer canonical docs and audited, battle-tested routes. Links below are placeholders; replace with official references.</p>
-      <ul>
-        <li><a href="#" rel="noopener">Polygon Portal — Official</a></li>
-        <li><a href="#" rel="noopener">Polygon Bridge (Docs)</a></li>
-        <li><a href="#" rel="noopener">Allowance &amp; Approval Hygiene</a></li>
-      </ul>
-      <div class="note"><strong>About:</strong> Prepared by Crypto Finance Experts to provide practical, safe guidance for <em>Polygon Bridge</em> on <em>Polygon Chain</em>.</div>
+    <!-- RESOURCES (your list) -->
+    <section class="section" id="resources">
+      <div class="two">
+        <div>
+          <span class="kicker">links</span>
+          <h2>Resources & References</h2>
+        </div>
+        <div class="card">
+          <ul class="list">
+            <li><a href="https://tokenterminal.com/explorer/studio/dashboards/8ab33a52-0092-44fa-a191-887ac22afe89" target="_blank" rel="noopener nofollow">Token Terminal — Polygon staking / network dashboard</a></li>
+            <li><a href="https://cryptoquant.com/community/dashboard/6970aaa5a662164c84864dc9?e=6970ab3fcbe161236f139677" target="_blank" rel="noopener nofollow">CryptoQuant — community dashboard</a></li>
+            <li><a href="https://dev.to/stablecoinstrategist/staking-polygon-step-by-step-guide-how-to-stake-matic-safely-and-correctly-1ld5" target="_blank" rel="noopener nofollow">Dev.to — staking Polygon step-by-step guide</a></li>
+            <li><a href="https://open.substack.com/pub/lilyprescott/p/staking-polygon-rewards-explained" target="_blank" rel="noopener nofollow">Substack — Polygon staking rewards explained</a></li>
+            <li><a href="https://sushi-swap.medium.com/staking-polygon-review-how-it-works-in-2026-23e1edd427ee" target="_blank" rel="noopener nofollow">Medium — staking Polygon review (2026)</a></li>
+            <li><a href="https://steemit.com/crypto/@cryptoflowernews/staking-polygon-risks-explained-liquidity-unbonding-and-validator-failure" target="_blank" rel="noopener nofollow">Steemit — Polygon risks explained</a></li>
+            <li><a href="https://dapplooker.com/dashboard/staking-polygon-dashboard-2026-validators-delegators-and-incentives-1311" target="_blank" rel="noopener nofollow">DappLooker — Polygon dashboard</a></li>
+            <li><a href="https://paragraph.com/@polygon-bridge/staking-polygon-for-beginners-from-wallet-setup-to-first-rewards" target="_blank" rel="noopener nofollow">Paragraph — Polygon beginner guide</a></li>
+            <li><a href="https://www.tumblr.com/mysterioustrooperservant/806349593339133952/staking-polygon-validator-metrics-uptime?source=share" target="_blank" rel="noopener nofollow">Tumblr — validator metrics & uptime notes</a></li>
+            <li><a href="https://sites.google.com/view/stakingpolygon" target="_blank" rel="noopener nofollow">Google Sites — staking polygon hub</a></li>
+          </ul>
+          <div class="hint">
+            <b>Note:</b> use resources for verification. For real staking actions, use official interfaces and double-check URLs.
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- FAQ -->
-    <section class="card faq-section" aria-labelledby="faq">
-      <h2 id="faq">Frequently Asked Questions — Polygon Bridge</h2>
-
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
-          <h3>Is Polygon Bridge the safest route on Polygon Chain?</h3><span class="muted">+</span>
-        </button>
-        <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
-          <p>Canonical <strong>Polygon Bridge</strong> routes are generally safer than third-party fast bridges. Use <strong>Polygon Portal</strong> for default routing and clear finality steps.</p>
+    <section class="section" id="faq">
+      <div class="faq" aria-label="FAQ">
+        <div class="faq-head">
+          <span class="kicker">faq</span>
+          <h2 style="margin:0;">Staking Polygon Calculator FAQ</h2>
+          <p style="margin:8px 0 0; color: var(--muted);">Short answers to the questions people actually search.</p>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
-          <h3>What fees should I expect on Polygon Bridge?</h3><span class="muted">+</span>
-        </button>
-        <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
-          <p>L1/L2 gas, any relayer/proof costs, and optional swap fees. <strong>Polygon Portal</strong> shows estimates and min-received protection.</p>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="f1">
+            <p class="faq-q">What’s the difference between APR and APY in staking?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div id="f1" class="faq-panel" role="region">
+            <p>APR is the simple annual rate. APY assumes compounding (reinvesting rewards). APY is higher than APR only if compounding happens and fees don’t cancel it out.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
-          <h3>How does slippage work with Polygon Bridge swaps?</h3><span class="muted">+</span>
-        </button>
-        <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
-          <p>Slippage applies when a swap occurs before/after bridging. Set a conservative tolerance and ensure deep liquidity on the destination of <strong>Polygon Chain</strong>.</p>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="f2">
+            <p class="faq-q">How does validator commission affect my yield?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div id="f2" class="faq-panel" role="region">
+            <p>Commission is taken from your rewards. A 5% commission reduces a 6% APR into ~5.7% net APR (before your transaction fees).</p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
-          <h3>How long do Polygon Bridge withdrawals take?</h3><span class="muted">+</span>
-        </button>
-        <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
-          <p>zk routes finalize faster; PoS withdrawals may require longer exit windows. Plan settlement timing accordingly.</p>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="f3">
+            <p class="faq-q">How often should I compound Polygon staking rewards?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div id="f3" class="faq-panel" role="region">
+            <p>Only when the extra rewards from compounding are comfortably larger than the extra claim/restake fees. For small stakes, “less often” is usually better.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
-          <h3>Does Polygon Portal protect me from MEV?</h3><span class="muted">+</span>
-        </button>
-        <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
-          <p>It cannot fully eliminate MEV, but you can reduce it: avoid volatile windows, use private tx where available, and set strict slippage on swaps.</p>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="f4">
+            <p class="faq-q">Why does my calculated profit look low?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div id="f4" class="faq-panel" role="region">
+            <p>Because fees (approvals/claims/restakes) matter. If you stake a small amount and claim frequently, transaction fees can remove most of the yield.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
-          <h3>Is there a difference between Polygon Bridge routes?</h3><span class="muted">+</span>
-        </button>
-        <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
-          <p>Yes. Canonical PoS vs zk-secured routes differ in finality time and proof costs. Choose based on urgency and fee sensitivity.</p>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false" aria-controls="f5">
+            <p class="faq-q">Is a higher APR always better?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div id="f5" class="faq-panel" role="region">
+            <p>No. Validator reliability, commission transparency, and fee impact often matter more than small APR differences. Realized yield is what counts.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
-          <h3>Can I split large transfers with Polygon Bridge?</h3><span class="muted">+</span>
-        </button>
-        <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
-          <p>Yes—recommended. Use multiple tranches with confirmations and <em>minReceived</em> guards to manage liquidity and risk on <strong>Polygon Chain</strong>.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
-          <h3>What if a Polygon Bridge transaction fails?</h3><span class="muted">+</span>
-        </button>
-        <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
-          <p>Check nonce/mempool, bump priority fee, reduce size, or retry later. Verify no partial state before resubmitting.</p>
-        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- =======================
-       Footer
-       ======================= -->
-  <footer class="container" role="contentinfo" style="padding:2rem 0; border-top:1px solid var(--line); margin-top:2rem">
-    <p class="muted">© 2025 Polygon Bridge Guide. Placeholder links — replace with official <em>Polygon Portal</em> and <em>Polygon Chain</em> docs.</p>
+  <footer>
+    <div class="container">
+      © 2026 — Educational page. Calculator outputs are estimates; verify real conditions in official dashboards and portals.
+    </div>
   </footer>
 
-  
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
 
+      function fmtPct(x){
+        if(!isFinite(x)) return "—";
+        return (x * 100).toFixed(2) + "%";
+      }
+      function fmtTok(x){
+        if(!isFinite(x)) return "—";
+        return x.toLocaleString(undefined, {maximumFractionDigits: 4});
+      }
 
+      function calc(){
+        const stake = parseFloat($("stake").value || "0");
+        const apr = parseFloat($("apr").value || "0") / 100;
+        const commission = parseFloat($("commission").value || "0") / 100;
+        const n = parseInt($("compounds").value || "0", 10);
+        const feesYear = parseFloat($("feesYear").value || "0");
+        const months = Math.max(1, parseInt($("months").value || "12", 10));
 
+        const netApr = Math.max(0, apr * (1 - commission)); // after commission
+        // APY with compounding
+        const apy = (n > 0) ? (Math.pow(1 + (netApr / n), n) - 1) : netApr;
 
+        const period = months / 12;
+        const rewards = stake * apy * period; // estimated rewards for time horizon
+        const feesPeriod = feesYear * period;
+        const profit = rewards - feesPeriod;
 
+        $("netApr").textContent = fmtPct(netApr);
+        $("apy").textContent = fmtPct(apy);
+        $("rewards").textContent = fmtTok(rewards) + " POL/MATIC";
+        $("profit").textContent = fmtTok(profit) + " POL/MATIC";
 
+        const feeShare = (rewards > 0) ? (feesPeriod / rewards) : 0;
+        const hint = $("hint");
+        if(rewards <= 0){
+          hint.innerHTML = "<b>Tip:</b> increase stake or APR inputs to see an estimate. This is a model — not a guarantee.";
+        }else if(feeShare > 0.25){
+          hint.innerHTML = "<b>Warning:</b> your fees are a large share of rewards. Reduce compounding frequency or avoid frequent claims.";
+        }else if(feeShare > 0.10){
+          hint.innerHTML = "<b>Note:</b> fees are noticeable. Monthly compounding (or less) is often more efficient than weekly for many users.";
+        }else{
+          hint.innerHTML = "<b>Tip:</b> your fee impact looks reasonable. Still verify validator uptime and commission stability for real-world results.";
+        }
+      }
 
+      ["stake","apr","commission","compounds","feesYear","months"].forEach(id => {
+        $(id).addEventListener("input", calc);
+        $(id).addEventListener("change", calc);
+      });
 
-</body></html>
+      // FAQ toggles
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const btn = item.querySelector('.faq-btn');
+        const panel = item.querySelector('.faq-panel');
+        const plus = item.querySelector('.faq-plus');
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          if(!expanded){
+            panel.classList.add('open');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            plus.textContent = '–';
+          }else{
+            panel.classList.remove('open');
+            panel.style.maxHeight = '0px';
+            plus.textContent = '+';
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.faq-panel.open').forEach(p => {
+          p.style.maxHeight = p.scrollHeight + 'px';
+        });
+      });
+
+      calc();
+    })();
+  </script>
+
+</body>
+</html>
