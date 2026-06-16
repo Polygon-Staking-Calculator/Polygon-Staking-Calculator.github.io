@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://polygon-staking-calculator.github.io/sitemap.xml

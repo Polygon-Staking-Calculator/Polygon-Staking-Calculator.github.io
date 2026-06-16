@@ -1,0 +1,107 @@
+{
+ "keyword": "polygon staking calculator",
+ "h1": "Polygon Staking Calculator",
+ "brand": "Polygon Staking",
+ "niche": "tool",
+ "verb": "Stake",
+ "title": "Polygon Staking Calculator - Open App",
+ "meta_description": "polygon staking calculator for modeling POL delegation rewards, validator commission, and timing before opening the official Polygon staking app.",
+ "palette": {
+  "mode": "dark",
+  "bg": "#000000",
+  "accent": "#8247E5",
+  "ink": "#FFFFFF"
+ },
+ "hero_h2": "Estimate POL delegation rewards before you open the app",
+ "hero_lead": "polygon staking calculator helps you model POL delegation assumptions, compare validator variables, and continue to the official Polygon staking app when ready.",
+ "badge": "POL Staking",
+ "widget": {
+  "from": "POL",
+  "from_net": "Ethereum",
+  "to": "Validator delegation",
+  "to_net": "Polygon PoS",
+  "action": "Open Polygon Staking App"
+ },
+ "trust": [
+  "Official app: staking.polygon.technology",
+  "POL is Polygon's staking token",
+  "Explorer: PolygonScan"
+ ],
+ "what_is": "This calculator is a planning layer for POL delegation before you continue to the official <a href='https://staking.polygon.technology/'>Polygon staking app</a>. It does not custody funds or publish guaranteed APY; it helps frame inputs like amount, validator commission, and time horizon.",
+ "how": [
+  {
+   "t": "Enter POL amount",
+   "d": "Use the amount you are considering for delegation and keep separate funds for wallet transaction fees."
+  },
+  {
+   "t": "Set assumptions",
+   "d": "Model time horizon, reward rate assumptions, and validator commission without treating any estimate as guaranteed."
+  },
+  {
+   "t": "Check validator context",
+   "d": "Review validator status, commission, and on-chain activity before delegating."
+  },
+  {
+   "t": "Open the official app",
+   "d": "Continue to staking.polygon.technology, verify the domain, connect your wallet, and sign only the expected transactions."
+  }
+ ],
+ "points": [
+  {
+   "h": "Plan before signing",
+   "p": "Estimate possible outcomes before connecting a wallet or approving a staking transaction."
+  },
+  {
+   "h": "Validator-aware inputs",
+   "p": "Delegation results can vary by validator performance, commission, and network reward conditions; use <a href='https://polygonscan.com/'>PolygonScan</a> for on-chain context."
+  },
+  {
+   "h": "Direct app route",
+   "p": "The primary action routes to staking.polygon.technology, which is linked from the <a href='https://polygon.technology/'>Polygon official site</a> under staking."
+  }
+ ],
+ "eeat": [
+  {
+   "text": "Polygon staking app",
+   "url": "https://staking.polygon.technology/"
+  },
+  {
+   "text": "POL token page",
+   "url": "https://pol.polygon.technology/"
+  },
+  {
+   "text": "PolygonScan explorer",
+   "url": "https://polygonscan.com/"
+  }
+ ],
+ "faq": [
+  {
+   "q": "What is a polygon staking calculator?",
+   "a": "It is an estimate tool for modeling POL delegation assumptions before using the official staking interface.",
+   "open": true
+  },
+  {
+   "q": "Does the polygon staking calculator guarantee rewards?",
+   "a": "No. Rewards can change with validator performance, network parameters, commissions, and market conditions, so outputs should be treated as estimates only.",
+   "open": false
+  },
+  {
+   "q": "Where should I stake after using the polygon staking calculator?",
+   "a": "Use <a href='https://staking.polygon.technology/'>staking.polygon.technology</a> and verify the domain before connecting a wallet.",
+   "open": false
+  },
+  {
+   "q": "Which token does the polygon staking calculator use?",
+   "a": "Polygon's <a href='https://pol.polygon.technology/'>POL token page</a> identifies POL as the network and staking token powering Polygon.",
+   "open": false
+  },
+  {
+   "q": "Do I need a wallet for the polygon staking calculator workflow?",
+   "a": "The estimate can be reviewed without custody, but the official staking app requires a compatible wallet and signed transactions to delegate.",
+   "open": false
+  }
+ ],
+ "official_url": "https://staking.polygon.technology/",
+ "official_domain": "staking.polygon.technology",
+ "footer_note": "Not the official app; verify staking.polygon.technology before connecting a wallet. Educational only, not financial advice."
+}
