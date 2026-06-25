@@ -1,22 +1,22 @@
 {
- "name": "Polygon Staking",
- "short_name": "Polygon Stakin",
- "start_url": "/",
- "display": "standalone",
- "background_color": "#FFFFFF",
- "theme_color": "#FFFFFF",
- "icons": [
-  {
-   "src": "static/icon-192.png",
-   "sizes": "192x192",
-   "type": "image/png",
-   "purpose": "any maskable"
-  },
-  {
-   "src": "static/icon-512.png",
-   "sizes": "512x512",
-   "type": "image/png",
-   "purpose": "any maskable"
-  }
- ]
+  "name": "Polygon Staking Calculator",
+  "short_name": "POL Calculator",
+  "description": "Polygon Staking Calculator estimates POL staking rewards before you stake from your own wallet.",
+  "start_url": "https://polygon-staking-calculator.github.io/",
+  "scope": "https://polygon-staking-calculator.github.io/",
+  "display": "standalone",
+  "background_color": "#F7F6F4",
+  "theme_color": "#8247E5",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
